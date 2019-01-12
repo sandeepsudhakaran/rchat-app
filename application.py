@@ -69,5 +69,55 @@ def login():
     return render_template("login.html", form=login_form)
 
 
+@app.route("/logout", methods=['GET'])
+def logout():
+
+    # Logout user
+    session.pop("user_id")
+    flash('You have logged out successfully', 'success')
+    return redirect(url_for('login'))
+
+
+@app.route("/chat", methods=['GET', 'POST'])
+@login_required
+def chat():
+
+    username = session["user_id"]
+    return render_template("chat.html", username=username, rooms=ROOMS)
+
+
+@socketio.on('incoming-msg')
+def on_message(data):
+    """Broadcast messages"""
+
+    msg = data["msg"]
+    username = data["username"]
+    room = data["room"]
+    # Set timestamp
+    time_stamp = time.strftime('%b-%d %I:%M%p', time.localtime())
+    send({"username": username, "msg": msg, "time_stamp": time_stamp}, room=room)
+
+
+@socketio.on('join')
+def on_join(data):
+    """User joins a room"""
+
+    username = data["username"]
+    room = data["room"]
+    join_room(room)
+
+    # Broadcast that new user has joined
+    send({"msg": username + " has joined the " + room + " room."}, room=room)
+
+
+@socketio.on('leave')
+def on_leave(data):
+    """User leaves a room"""
+
+    username = data['username']
+    room = data['room']
+    leave_room(room)
+    send({"msg": username + " has left the room"}, room=room)
+
 if __name__ == "__main__":
     app.run(debug=True)
