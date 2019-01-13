@@ -1,10 +1,10 @@
-# Flask-Socketio Chat App Deployed in Heroku
+# Chat App Using Flask-SocketIO & Deployed in Heroku
 
 ## Introduction
 This is a chat application, implemented using Flask-SocketIO with both the database (PostgreSQL) and the app deployed in Heroku. It also has user registration and authentication functionalities.
 
 ## Demo
-(https://github.com/sandeepsudhakaran/templates/images/demo.gif "RChat - Chat rooms are back in style!")
+<img src="https://github.com/sandeepsudhakaran/rchat-app/blob/master/static/images/demo-on-github.gif" alt="RChat - Chat rooms are back in style!" width="40%" height="40%">
 
 ## Files in the program
 - **application.py**: This is the main app file and contains both the registration/login page logic and the Flask-SocketIO backend for the app.
@@ -19,20 +19,23 @@ This is a chat application, implemented using Flask-SocketIO with both the datab
 
 
 ## Usage
-1. To run the app, use [the link to the production server](https://rchat-app.herokuapp.com) directly.
+### Run app
+Use [the link to the production server](https://rchat-app.herokuapp.com) directly.
 
-2. To clone and edit, first modify application.py to replace the secret key *(i.e. os.environ.get('SECRET'))* with a secret key of your choice and the database link *(i.e. os.environ.get('DATABASE_URL'))* with the link to your own database.
+### Clone/Modify app
+1. Modify application.py to replace the secret key *(i.e. os.environ.get('SECRET'))* with a secret key of your choice and the database link *(i.e. os.environ.get('DATABASE_URL'))* with the link to your own database.
 
     The two lines to be edited in application.py are shown below:
 ```python
 app.secret_key=os.environ.get('SECRET')
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
 ```
-Next, edit *create.py* and once again replace *os.environ.get('DATABASE_URL')* with the link to your database.
+2. Edit *create.py* to once again replace *os.environ.get('DATABASE_URL')* with the link to your database.
 
-    And finally, run *create.py* from the terminal to create the tables
-```bash
-python create.py
+3. Run *create.py* from the terminal to create the table to hold user credentials.
+    
+```console
+foo@bar:~$ python create.py
 ```
 
 ## Roadmap
@@ -41,4 +44,4 @@ Add security features relating to Input Validation, Cross Domain, Secure Transmi
 *See [OWASP Cheat Sheet Series](https://www.owasp.org/index.php/OWASP_Cheat_Sheet_Series#tab=Main)*.
 
 ## License
-(https://badges.mit-license.org/)
+[CC-BY](https://creativecommons.org/licenses/by/3.0/)
