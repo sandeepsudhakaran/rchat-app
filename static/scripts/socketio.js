@@ -16,21 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
             'username': username, 'room': room});
 
         document.querySelector('#user_message').value = '';
-        console.log("sendmsg")
     };
 
     // Display all incoming messages
     socket.on('message', data => {
-        console.log("top")
 
         // Display current message
         if (data.msg) {
-            console.log("top-next")
             const p = document.createElement('p');
             const span_username = document.createElement('span');
             const span_timestamp = document.createElement('span');
             const br = document.createElement('br')
-            console.log("top-next-next")
             // Display user's own message
             if (data.username == username) {
                     p.setAttribute("class", "my-msg");
@@ -48,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     //Append
                     document.querySelector('#display-message-section').append(p);
-                    console.log("me")
             }
             // Display other users' messages
             else if (typeof data.username !== 'undefined') {
@@ -67,11 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 //Append
                 document.querySelector('#display-message-section').append(p);
-                console.log("other")
             }
             // Display system message
             else {
-                console.log("system")
                 printSysMsg(data.msg);
             }
 
@@ -98,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Logout from chat
     document.querySelector("#logout-btn").onclick = () => {
-        console.log("hi");
         leaveRoom(room);
     };
 
