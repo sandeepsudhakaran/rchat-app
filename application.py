@@ -37,7 +37,7 @@ def index():
     reg_form = RegistrationForm()
 
     # Update database if validation success
-    if request.method == 'POST' and reg_form.validate_on_submit():
+    if reg_form.validate_on_submit():
         username = reg_form.username.data
         password = reg_form.password.data
 
@@ -61,7 +61,7 @@ def login():
     login_form = LoginForm()
 
     # Allow login if validation success
-    if request.method == 'POST' and login_form.validate_on_submit():
+    if login_form.validate_on_submit():
         username = login_form.username.data
         session["user_id"] = username
         return redirect(url_for('chat'))
@@ -84,6 +84,12 @@ def chat():
 
     username = session["user_id"]
     return render_template("chat.html", username=username, rooms=ROOMS)
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
 
 @socketio.on('incoming-msg')
