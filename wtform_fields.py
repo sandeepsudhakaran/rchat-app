@@ -43,4 +43,4 @@ class LoginForm(FlaskForm):
     """ Login form """
 
     username = StringField('username', validators=[InputRequired(message="Username required")])
-    password = PasswordField('password', validators=[InputRequired(message="Password required"), Length(min=4, max=25, message="Password must be between 4 and 25 characters"), invalid_credentials])
+    password = PasswordField('password', validators=[InputRequired(message="Password required"), invalid_credentials])
