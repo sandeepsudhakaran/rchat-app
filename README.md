@@ -8,7 +8,6 @@ This is a chat application, implemented using Flask-SocketIO with both the datab
 
 ## Files in the program
 - **application.py**: This is the main app file and contains both the registration/login page logic and the Flask-SocketIO backend for the app.
-- **login_required.py**: Contains the code for @login-required decorator used in application.py
 - **models.py**: Contains Flask-SQLAlchemy models used for user registration and login in application.py
 - **wtform_fields.py**: Contains the classes for WTForms/Flask-WTF and the custom validators for the fields
 - **create.py**: optional file only required if repo is to be cloned. *See 'Usage' section below.*
