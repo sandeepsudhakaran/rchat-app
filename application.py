@@ -4,7 +4,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, login_user, current_user, logout_user
 from flask_socketio import SocketIO, join_room, leave_room, send
 
-
 from wtform_fields import *
 from models import *
 
@@ -87,6 +86,12 @@ def chat():
         return redirect(url_for('login'))
 
     return render_template("chat.html", username=current_user.username, rooms=ROOMS)
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
 
 @app.errorhandler(404)
