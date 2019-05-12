@@ -16,6 +16,9 @@ This is a chat application, implemented using Flask-SocketIO with both the datab
 - **templates/**: folder with all HTML files
 - **static/**: for with all JS scripts and CSS files
 
+## Code along series
+Watch the 13-part video series where I build this app from scratch
+<a href="https://www.youtube.com/playlist?list=PLlLKnYbrXi_rFrzsPa0NxZayHrT52a777"><img src="https://github.com/sandeepsudhakaran/rchat-app/blob/master/static/images/rchat-playlist.png" alt="Watch Code Along Series"></a>
 
 ## Usage
 ### Run app
